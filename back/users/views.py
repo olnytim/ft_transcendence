@@ -2,11 +2,13 @@ from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 import json
+
+User = get_user_model()
 
 @api_view(['POST'])
 @csrf_exempt
@@ -29,9 +31,6 @@ def register_user(request):
             email=email,
             password=password
         )
-        
-        # Создаем связанные профили игроков
-        user.create_associated_players(request)
         
         return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
     
@@ -61,11 +60,13 @@ def login_user(request):
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-@api_view(['POST'])
+@csrf_exempt
 def logout_user(request):
     """Выход пользователя"""
-    logout(request)
-    return Response({'message': 'Logout successful'}, status=status.HTTP_200_OK)
+    if request.method == 'POST':
+        logout(request)
+        return JsonResponse({'message': 'Logout successful'})
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 @api_view(['GET'])
 @login_required
