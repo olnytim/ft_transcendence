@@ -7,7 +7,7 @@
 ### 🎯 Основные возможности
 - **Pong** - классическая игра с ракетками (одиночная игра и турниры)
 - **Clicker** - игра на скорость кликов с турнирным режимом
-- **Система аутентификации** через 42 School Intra
+- **Система аутентификации** с регистрацией и входом
 - **Полный мониторинг** и логирование
 - **Масштабируемая архитектура** на Docker
 
@@ -217,7 +217,7 @@ curl -X POST https://localhost:8081/api/pong/games/ \
 ```
 ft_transcendence/
 ├── back/                 # Django backend
-│   ├── intrauth/        # Кастомная аутентификация
+│   ├── users/           # Модель пользователей
 │   ├── pong/           # Игра Pong
 │   ├── clicker/        # Игра Clicker
 │   └── back/           # Основные настройки Django
@@ -255,10 +255,10 @@ GF_PASSWORD=your_grafana_password
 # Kibana Settings
 KIBANA_USER=kibana_system
 
-# 42 School OAuth Settings (optional)
-INTRA_CLIENT_ID=your_intra_client_id
-INTRA_CLIENT_SECRET=your_intra_client_secret
-INTRA_REDIRECT_URI=https://localhost:8081/oauth/callback/
+# Optional: 42 School OAuth Settings (removed from project)
+# INTRA_CLIENT_ID=your_intra_client_id
+# INTRA_CLIENT_SECRET=your_intra_client_secret
+# INTRA_REDIRECT_URI=https://localhost:8081/oauth/callback/
 ```
 
 ### Docker Compose сервисы

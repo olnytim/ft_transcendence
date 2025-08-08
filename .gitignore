@@ -8,4 +8,5 @@ alertmanager.yml
 00*.py
 __pychache__
 certs/
-*.pyc.env-e
+*.pyc
+.env-e

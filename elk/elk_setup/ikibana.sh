@@ -43,6 +43,7 @@ curl -X PUT "$ELASTICSEARCH_HOST/_ilm/policy/logs_retention_policy" \
     }
   }
 }'
+echo ""
 
 echo "Создаём шаблон индекса..."
 curl -X PUT "$ELASTICSEARCH_HOST/_index_template/logs_template" \
@@ -58,6 +59,7 @@ curl -X PUT "$ELASTICSEARCH_HOST/_index_template/logs_template" \
     }
   }
 }'
+echo ""
 
 echo "Создаём начальный индекс..."
 curl -X PUT "$ELASTICSEARCH_HOST/logs-000001" \
@@ -71,3 +73,4 @@ curl -X PUT "$ELASTICSEARCH_HOST/logs-000001" \
     }
   }
 }'
+echo ""

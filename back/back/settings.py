@@ -31,11 +31,10 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() == 'true'
 
 ALLOWED_HOSTS = [ 'postgres', 'localhost', '127.0.0.1' ]
 
-AUTH_USER_MODEL = 'intrauth.IntraUser'
+AUTH_USER_MODEL = 'users.User'
 
 AUTHENTICATION_BACKENDS = [
-    'intrauth.auth.IntraAuthenticationBackend',
-    # 'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 # Application definition
@@ -47,9 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
     'pong',
     'clicker',
-    'intrauth',
     'rest_framework',
     'corsheaders',
 ]

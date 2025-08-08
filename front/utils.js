@@ -14,7 +14,8 @@ function showNames() {
 function showUser() {
 	const language = localStorage.getItem('language') || 'en';
 	const transObj = translations[language];
-	return localStorage.getItem('intraUser') ? localStorage.getItem('intraUser') : transObj.player1;
+	    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user.username ? user.username : transObj.player1;
 }
 
 

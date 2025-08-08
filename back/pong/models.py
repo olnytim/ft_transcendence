@@ -1,9 +1,10 @@
 from django.db import models
-from intrauth.models import IntraUser
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 class PongPlayer(models.Model):
-    user = models.ForeignKey(IntraUser, related_name='pong_players', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='pong_players', on_delete=models.CASCADE)
     nickname = models.CharField(max_length=100)
     rating = models.IntegerField(default=0)
     total_games = models.IntegerField(default=0)
@@ -11,9 +12,9 @@ class PongPlayer(models.Model):
     losses = models.IntegerField(default=0)
 
     @classmethod
-    def create(cls, intra_user):
+    def create(cls, user):
         print("Creating PongPlayer for user", flush=True)
-        return cls.objects.create(user=intra_user, nickname=intra_user.intra_login + "_pong")
+        return cls.objects.create(user=user, nickname=user.username + "_pong")
 
     def win_rate(self):
         if self.total_games > 0:

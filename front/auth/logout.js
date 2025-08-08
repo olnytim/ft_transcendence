@@ -1,5 +1,5 @@
 const logout = () => {
-    localStorage.removeItem('intraUser');
+    localStorage.removeItem('user');
 };
 
 window.logout = logout;

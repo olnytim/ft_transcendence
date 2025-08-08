@@ -105,14 +105,7 @@ copy_certs:
 
 generate_secret_key:
 	@echo "${PURPLE}*Generating secret key...*${RESET}"
-	@key=$$(python3 tools/generate_secret_key.py | cut -d= -f2); \
-	if grep -q '^DJANGO_SECRET_KEY=' .env; then \
-		sed -i'' -e "s|^DJANGO_SECRET_KEY=.*|DJANGO_SECRET_KEY=$$key|" .env; \
-		echo "${CYAN}*Secret key updated!*${RESET}"; \
-	else \
-		echo "DJANGO_SECRET_KEY=$$key" >> .env; \
-		echo "${CYAN}*Secret key added!*${RESET}"; \
-	fi
+	@bash tools/update_secret_key.sh
 
 
 .PHONY: build up down re clean fclean gen check_es01 clean_certs copy_certs generate_secret_key

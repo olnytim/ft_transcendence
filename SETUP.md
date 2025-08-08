@@ -50,10 +50,6 @@ KIBANA_USER=kibana_system
 
 #### Опциональные настройки (для production):
 ```bash
-# 42 School OAuth
-INTRA_CLIENT_ID=<ваш_client_id>
-INTRA_CLIENT_SECRET=<ваш_client_secret>
-INTRA_REDIRECT_URI=https://localhost:8081/oauth/callback/
 
 # Email для алертов
 SMTP_HOST=smtp.gmail.com
@@ -135,7 +131,7 @@ docker exec -it front sh
 - **POSTGRES_*** - настройки базы данных
 - **ELASTIC_*** - настройки Elasticsearch
 - **GF_*** - настройки Grafana
-- **INTRA_*** - настройки OAuth (42 School)
+- **SMTP_*** - настройки email (для алертов)
 
 ## 🔒 Безопасность
 

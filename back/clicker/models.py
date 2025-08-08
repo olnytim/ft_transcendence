@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-from intrauth.models import IntraUser
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class ClickerPlayer (models.Model):
-    user = models.ForeignKey(IntraUser, related_name='clicker_players', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='clicker_players', on_delete=models.CASCADE)
     nickname = models.CharField(max_length = 100)
     number_of_matches = models.IntegerField(default=0)
     average_click_speed = models.FloatField(default=0)
@@ -11,9 +13,9 @@ class ClickerPlayer (models.Model):
     def __str__(self): return self.nickname
 
     @classmethod
-    def create(cls, intra_user):
-       print(f"Creating ClickerPlayer for user {intra_user}", flush=True)
-       return cls.objects.create(user=intra_user, nickname=intra_user.intra_login + "_clicker")
+    def create(cls, user):
+       print(f"Creating ClickerPlayer for user {user}", flush=True)
+       return cls.objects.create(user=user, nickname=user.username + "_clicker")
 
 class ClickerGame (models.Model):
     players = models.ManyToManyField(ClickerPlayer, related_name='clicker_games')
