@@ -19,6 +19,7 @@ build: gen
 	@${COMPOSE} -f docker-compose-main.yaml up --remove-orphans -d --build es01
 	@$(MAKE) check_es01
 	@bash ./elk/elk_setup/ikibana.sh
+	@${MAKE} generate_secret_key
 	@${COMPOSE} -f docker-compose-main.yaml up -d --build kib01
 	@${COMPOSE} -f docker-compose-main.yaml up -d --build log01
 	@${COMPOSE} -f docker-compose-main.yaml up -d --build
@@ -39,7 +40,7 @@ down:
 	@${COMPOSE} -f docker-compose-main.yaml down
 
 re: down up
-	@echo "${BLUE}* Projcet ${PROJECT} was rebuilded!* ${RESET}"
+	@echo "${BLUE}* Project ${PROJECT} was rebuilded!* ${RESET}"
 
 clean: down
 	@echo "${RED}* Removing ${PROJECT} data...* ${RESET}"
@@ -102,4 +103,16 @@ copy_certs:
 		cp -r ./certs ./elk/$$service; \
 	done
 
-.PHONY: build up down re clean fclean gen check_es01 clean_certs copy_certs
+generate_secret_key:
+	@echo "${PURPLE}*Generating secret key...*${RESET}"
+	@key=$$(python3 tools/generate_secret_key.py | cut -d= -f2); \
+	if grep -q '^DJANGO_SECRET_KEY=' .env; then \
+		sed -i'' -e "s|^DJANGO_SECRET_KEY=.*|DJANGO_SECRET_KEY=$$key|" .env; \
+		echo "${CYAN}*Secret key updated!*${RESET}"; \
+	else \
+		echo "DJANGO_SECRET_KEY=$$key" >> .env; \
+		echo "${CYAN}*Secret key added!*${RESET}"; \
+	fi
+
+
+.PHONY: build up down re clean fclean gen check_es01 clean_certs copy_certs generate_secret_key

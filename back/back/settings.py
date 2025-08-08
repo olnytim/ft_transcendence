@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fz220zc=1-bh16w5rt6+k)$!ihp(2w9z-7-fo=0qw3m0rtiue#'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-fz220zc=1-bh16w5rt6+k)$!ihp(2w9z-7-fo=0qw3m0rtiue#')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() == 'true'
 
 ALLOWED_HOSTS = [ 'postgres', 'localhost', '127.0.0.1' ]
 
@@ -111,11 +111,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test_db',
-        'USER': 'admin',
-        'PASSWORD': 'admin123',
-        'HOST': 'postgres',
-        'PORT': '5432',
+        'NAME': os.getenv('POSTGRES_DB', 'test_db'),
+        'USER': os.getenv('POSTGRES_USER', 'admin'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'admin123'),
+        'HOST': os.getenv('POSTGRES_HOST', 'postgres'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
 
