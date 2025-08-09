@@ -47,6 +47,7 @@ const translations = {
         player: 'Player',
         time2: 'Time',
         signin: 'Log In',
+        signup: 'Sign Up',
         signout: 'Sign Out',
     },
     ru: {
@@ -86,6 +87,7 @@ const translations = {
         name: 'Имя',
         clicks: 'Клики',
         signin: 'Войти',
+        signup: 'Регистрироваться',
         signout: 'Выйти',
         signin_signout: 'Войти / Выйти',
         draw: 'Ничья',
@@ -114,6 +116,11 @@ function changeLanguage(language) {
         const key = element.getAttribute('data-translate');
         element.textContent = translations[language][key];
     });
+
+    // Обновляем состояние кнопок авторизации после смены языка
+    if (window.auth && window.auth.updateUI) {
+        window.auth.updateUI();
+    }
 }
 document.getElementById('flexRadioDefault1').addEventListener('change', function() {
     if (this.checked) {

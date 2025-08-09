@@ -14,17 +14,17 @@ async function loginUser(username, password) {
         });
 
         const data = await response.json();
-        
+
         if (response.ok) {
             // Сохраняем информацию о пользователе
             localStorage.setItem('user', JSON.stringify({
                 username: username,
                 isAuthenticated: true
             }));
-            
+
             // Обновляем UI
             updateAuthUI();
-            
+
             return { success: true, message: data.message };
         } else {
             return { success: false, message: data.error };
@@ -51,7 +51,7 @@ async function registerUser(username, password, email = '') {
         });
 
         const data = await response.json();
-        
+
         if (response.ok) {
             return { success: true, message: data.message };
         } else {
@@ -73,10 +73,10 @@ async function logoutUser() {
         if (response.ok) {
             // Очищаем локальное хранилище
             localStorage.removeItem('user');
-            
+
             // Обновляем UI
             updateAuthUI();
-            
+
             return { success: true, message: 'Logout successful' };
         } else {
             return { success: false, message: 'Logout failed' };
@@ -92,9 +92,9 @@ async function checkAuthStatus() {
         const response = await fetch('https://localhost:8081/is_logged_in/', {
             credentials: 'include'
         });
-        
+
         const data = await response.json();
-        
+
         if (data.is_logged_in) {
             localStorage.setItem('user', JSON.stringify({
                 username: data.username,
@@ -103,7 +103,7 @@ async function checkAuthStatus() {
         } else {
             localStorage.removeItem('user');
         }
-        
+
         updateAuthUI();
         return data.is_logged_in;
     } catch (error) {
@@ -118,7 +118,7 @@ function updateAuthUI() {
     const loginBtn = document.querySelector('[data-auth="login"]');
     const logoutBtn = document.querySelector('[data-auth="logout"]');
     const registerBtn = document.querySelector('[data-auth="register"]');
-    
+
     if (user.isAuthenticated) {
         if (loginBtn) loginBtn.style.display = 'none';
         if (registerBtn) registerBtn.style.display = 'none';
@@ -142,4 +142,4 @@ window.auth = {
     logout: logoutUser,
     checkStatus: checkAuthStatus,
     updateUI: updateAuthUI
-}; 
+};

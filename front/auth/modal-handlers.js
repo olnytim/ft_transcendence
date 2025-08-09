@@ -16,22 +16,22 @@ function showRegisterModal() {
 async function handleLogin() {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
-    
+
     if (!username || !password) {
         alert('Please fill in all fields');
         return;
     }
-    
+
     const result = await window.auth.login(username, password);
-    
+
     if (result.success) {
         // Закрываем модальное окно
         const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
         modal.hide();
-        
+
         // Очищаем форму
         document.getElementById('loginForm').reset();
-        
+
         // Показываем уведомление об успехе
         alert('Login successful!');
     } else {
@@ -44,22 +44,22 @@ async function handleRegister() {
     const username = document.getElementById('registerUsername').value;
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
-    
+
     if (!username || !password) {
         alert('Please fill in username and password');
         return;
     }
-    
+
     const result = await window.auth.register(username, password, email);
-    
+
     if (result.success) {
         // Закрываем модальное окно
         const modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
         modal.hide();
-        
+
         // Очищаем форму
         document.getElementById('registerForm').reset();
-        
+
         // Показываем уведомление об успехе
         alert('Registration successful! You can now login.');
     } else {
@@ -70,7 +70,7 @@ async function handleRegister() {
 // Обработка выхода
 async function logoutUser() {
     const result = await window.auth.logout();
-    
+
     if (result.success) {
         alert('Logout successful!');
     } else {
