@@ -1,17 +1,19 @@
-# ft_transcendence
+# ft\_transcendence
 
-## 🎮 О проекте
+## 🎮 About the Project
 
-**ft_transcendence** - это полноценная игровая платформа с двумя мини-играми, построенная на современном стеке технологий. Проект демонстрирует навыки full-stack разработки, DevOps практик и создания масштабируемых веб-приложений.
+**ft\_transcendence** is a fully featured gaming platform with two mini-games, built on a modern tech stack. The project showcases full-stack development skills, DevOps practices, and building scalable web applications.
 
-### 🎯 Основные возможности
-- **Pong** - классическая игра с ракетками (одиночная игра и турниры)
-- **Clicker** - игра на скорость кликов с турнирным режимом
-- **Система аутентификации** с регистрацией и входом
-- **Полный мониторинг** и логирование
-- **Масштабируемая архитектура** на Docker
+### 🎯 Key Features
 
-### 🏗️ Архитектура
+* **Pong** — the classic paddle game (single player and tournaments)
+* **Clicker** — click-speed game with a tournament mode
+* **Authentication system** with registration and login
+* **Full monitoring** and logging
+* **Scalable architecture** on Docker
+
+### 🏗️ Architecture
+
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Frontend      │    │   Backend       │    │   Database      │
@@ -34,158 +36,179 @@
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-### 🛠️ Технологический стек
+### 🛠️ Tech Stack
 
 #### Backend
-- **Django 3.2** - веб-фреймворк
-- **Django REST Framework** - API
-- **PostgreSQL** - база данных
-- **Custom Authentication** - интеграция с 42 School
+
+* **Django 3.2** — web framework
+* **Django REST Framework** — API
+* **PostgreSQL** — database
+* **Custom Authentication** — integration with 42 School
 
 #### Frontend
-- **Vanilla JavaScript** - без фреймворков
-- **Bootstrap 5** - UI компоненты
-- **Three.js** - 3D графика
-- **Responsive Design** - адаптивность
+
+* **Vanilla JavaScript** — no frameworks
+* **Bootstrap 5** — UI components
+* **Three.js** — 3D graphics
+* **Responsive Design** — mobile-friendly
 
 #### DevOps & Infrastructure
-- **Docker & Docker Compose** - контейнеризация
-- **Nginx** - обратный прокси и SSL
-- **Prometheus** - сбор метрик
-- **Grafana** - визуализация
-- **ELK Stack** - логирование (Elasticsearch, Logstash, Kibana)
-- **Alertmanager** - система алертов
 
-### 🎮 Игровые механики
+* **Docker & Docker Compose** — containerization
+* **Nginx** — reverse proxy and SSL
+* **Prometheus** — metrics scraping
+* **Grafana** — visualization
+* **ELK Stack** — logging (Elasticsearch, Logstash, Kibana)
+* **Alertmanager** — alerting
+
+### 🎮 Game Mechanics
 
 #### Pong
-- Одиночная игра против AI
-- Турнирный режим
-- Настраиваемый максимальный счет (1, 3, 5)
-- Система рейтинга и статистики
+
+* Single-player vs AI
+* Tournament mode
+* Configurable max score (1, 3, 5)
+* Rating and stats system
 
 #### Clicker
-- Турнирный режим
-- Измерение скорости кликов
-- Настраиваемое время (3, 5, 10 секунд)
-- Статистика игроков
 
-### 🔐 Безопасность
-- **SSL/TLS** шифрование
-- **CORS** настройки
-- **CSRF** защита
-- **Custom Authentication** с 42 School
-- **Secure Headers** в Nginx
-- **Environment Variables** для конфиденциальных данных
-- **Secret Key** генерация для production
+* Tournament mode
+* Click-speed measurement
+* Configurable time limits (3, 5, 10 seconds)
+* Player statistics
 
-### 📊 Мониторинг и Observability
-- **Real-time метрики** через Prometheus
-- **Визуализация** в Grafana
-- **Централизованное логирование** через ELK
-- **Алерты** через Alertmanager
-- **Health checks** для всех сервисов
+### 🔐 Security
 
-### 🚀 Ключевые особенности для собеседований
+* **SSL/TLS** encryption
+* **CORS** configuration
+* **CSRF** protection
+* **Custom Authentication** with 42 School
+* **Secure Headers** in Nginx
+* **Environment Variables** for secrets
+* **Secret Key** generation for production
 
-1. **Полноценное решение** - от игр до мониторинга
-2. **Микросервисная архитектура** - разделение ответственности
-3. **DevOps практики** - автоматизация, мониторинг, логирование
-4. **Безопасность** - SSL, аутентификация, защита от атак
-5. **Масштабируемость** - Docker, отдельные сети
-6. **Современный стек** - актуальные технологии
+### 📊 Monitoring & Observability
 
-### 👥 Команда
-- **adavitav** - Backend разработка
-- **vgribkov** - Frontend разработка  
-- **tgalyaut** - DevOps
+* **Real-time metrics** via Prometheus
+* **Visualization** in Grafana
+* **Centralized logging** via ELK
+* **Alerts** via Alertmanager
+* **Health checks** for all services
+
+### 🚀 Interview-Ready Highlights
+
+1. **End-to-end solution** — from games to monitoring
+2. **Microservice-style architecture** — clear separation of concerns
+3. **DevOps practices** — automation, monitoring, logging
+4. **Security** — SSL, authentication, common protections
+5. **Scalability** — Docker, isolated networks
+6. **Modern stack** — up-to-date technologies
+
+### 👥 Team
+
+* **adavitav** — Backend
+* **vgribkov** — Frontend
+* **tgalyaut** — DevOps
 
 ---
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 
-### Предварительные требования
-- Docker и Docker Compose
-- Make (для Unix-систем)
-- Файл `.env` с переменными окружения
+### Prerequisites
 
-### Запуск проекта
+* Docker and Docker Compose
+* Make (on Unix systems)
+* `.env` file with environment variables
+
+### Run the project
+
 ```bash
-# Клонирование репозитория
+# Clone the repository
 git clone <repository-url>
 cd ft_transcendence
 
-# Создание .env файла
+# Create the .env file
 cp env.example .env
 
-# Генерация безопасного SECRET_KEY
+# Generate a secure SECRET_KEY
 python tools/generate_secret_key.py
-# Скопируйте сгенерированный SECRET_KEY в .env файл
+# Copy the generated SECRET_KEY into your .env
 
-# Отредактируйте .env файл с вашими настройками
-# Особое внимание уделите паролям для production
+# Edit .env with your settings
+# Pay special attention to production passwords/secrets
 
-# Запуск проекта
+# Build & start
 make build
 ```
 
-📖 **Подробные инструкции по настройке**: [SETUP.md](SETUP.md)
+📖 **Detailed setup instructions**: [SETUP.md](SETUP.md)
 
-### Доступ к сервисам
-- **Основное приложение**: https://localhost:8081
-- **Grafana**: http://localhost:3000 или https://localhost:8081/grafana
-- **Prometheus**: http://localhost:9090
-- **Kibana**: http://localhost:5601 (на обслуживании)
-- **Alertmanager**: http://localhost:9093
+### Service Access
+
+* **Main app**: [https://localhost:8081](https://localhost:8081)
+* **Grafana**: [http://localhost:3000](http://localhost:3000) or [https://localhost:8081/grafana](https://localhost:8081/grafana)
+* **Prometheus**: [http://localhost:9090](http://localhost:9090)
+* **Kibana**: [http://localhost:5601](http://localhost:5601) (under maintenance)
+* **Alertmanager**: [http://localhost:9093](http://localhost:9093)
 
 ---
 
-## 📋 Инструкция по запуску
-Сейчас хватает написать make, чтобы образы контейнеров спуллились|сбилдились, и контейнеры запустятся. После этого можно заходить на сайт, вводя ```localhost``` в браузере. В данном случае происходит редирект на ```https://localhost:443```
+## 📋 Runbook
 
-Чтобы попасть на веб-морду сервисов, нужно ввести ```http://localhost:<port>```. Номера портов сервисов, доступных для просмотра(убедитесь, что есть необходимые настройки UFW(любых других Firewall'ов):
-+ ```port:3000``` - Grafana
-+ ```port:9090``` - Prometheus
-+ ```port:5601``` - ElasticSearch - on maintenance
-+ ```port:9200``` - Kibana - on maintenance
-+ ```port:5044``` - Logstash - on maintenance
-+ ```port:9113``` - Nginx-exporter
-+ ```port:9100``` - Node-exporter
-+ ```port:9093``` - Alertmanager
+Usually it’s enough to run `make` to pull/build images and start containers. Then open the site at `localhost`. You’ll be redirected to `https://localhost:443`.
 
-## Настроил редиректы
-Теперь, если вы хотите зайти в Grafana или Kibana, то можно прописать ```localhost/grafana``` или ```localhost/kibana```, и попадете на веб-морды соответствующих сервисов.
+To access the web UI of each service, open `http://localhost:<port>`. Make sure UFW (or any firewall) allows the required ports:
+
+* `port:3000` — Grafana
+* `port:9090` — Prometheus
+* `port:5601` — Kibana — under maintenance
+* `port:9200` — Elasticsearch — under maintenance
+* `port:5044` — Logstash — under maintenance
+* `port:9113` — Nginx Exporter
+* `port:9100` — Node Exporter
+* `port:9093` — Alertmanager
+
+## Configured redirects
+
+If you want to open Grafana or Kibana through the proxy, use `localhost/grafana` or `localhost/kibana` to reach their web UIs.
 
 ## Grafana
-Grafana может предложить авторизоваться. Данные для входа, при необходимости, хранятся в ```data/grafana/.grafanapw```.
-В Grafana уже есть настроенный дашборд, который отслеживает состояние host-машины. В будущем можно добавить данные о трафике, проходящем через nginx (данные собираются и хранятся в prometheus)
+
+Grafana may prompt for login. Credentials, if needed, are stored in `data/grafana/.grafanapw`.
+A prebuilt dashboard tracks the host machine’s state. In the future we may add Nginx traffic stats (already scraped by Prometheus).
 
 ## Prometheus
-Попасть на prometheus можно через ```localhost:9090```. Во вкладке Status->Targets можете увидить все источники метрик, которые подключены в этом проекте. ```State``` у каждого источника должен быть ```UP``` и гореть зеленым. Если нет - пишите в тг @olnytim :)
+
+Open Prometheus at `localhost:9090`. Under **Status → Targets**, you can see all metric sources connected in this project. Each **State** should be **UP** (green). If not — ping me on Telegram `@olnytim` :)
 
 ## Alertmanager
-Пока только в работе настройка этого сервиса. Нахожусь на стадии создания smtp сервера, через который будет происходить рассылка email. Позже добавлю инфу. Пока есть возможность только зайти на веб-морду этого сервиса.
 
-## Вся инфа прописана в docker-compose.yaml файле. Позже добавлю доку и docker-compose будет ещё меняться.
-## Текущий общий объём используемого дискового пространства после поднятия контейнеров > nGB.
+Configuration is in progress. I’m setting up an SMTP server for email notifications. More info will be added later. For now, you can access the web UI only.
 
-## TEAM ```🔜SOON🔜```
-+ adavitav - Backend
-+ vgribkov - Frontend
-+ tgalyaut - DevOps
+## All configuration lives in `docker-compose.yaml`. More docs are coming; the compose file will evolve.
+
+## Current total disk usage after bringing containers up is > n GB.
+
+## TEAM `🔜SOON🔜`
+
+* adavitav — Backend
+* vgribkov — Frontend
+* tgalyaut — DevOps
 
 ---
 
-## 📚 API Документация
+## 📚 API Documentation
 
-### Аутентификация
+### Authentication
+
 ```http
 GET /oauth/login/
 POST /oauth/logout/
 GET /auth/user/
 ```
 
-### Игры
+### Games
+
 ```http
 # Pong
 GET /api/pong/players/
@@ -198,12 +221,13 @@ GET /api/clicker/games/
 POST /api/clicker/games/
 ```
 
-### Примеры запросов
+### Example Requests
+
 ```bash
-# Получение профиля пользователя
+# Get current user profile
 curl -H "Authorization: Bearer <token>" https://localhost:8081/auth/user/
 
-# Создание новой игры в Pong
+# Create a new Pong game
 curl -X POST https://localhost:8081/api/pong/games/ \
   -H "Content-Type: application/json" \
   -d '{"player1": 1, "player2": 2}'
@@ -211,27 +235,29 @@ curl -X POST https://localhost:8081/api/pong/games/ \
 
 ---
 
-## 🔧 Технические детали
+## 🔧 Technical Details
 
-### Структура проекта
+### Project Structure
+
 ```
 ft_transcendence/
 ├── back/                 # Django backend
-│   ├── users/           # Модель пользователей
-│   ├── pong/           # Игра Pong
-│   ├── clicker/        # Игра Clicker
-│   └── back/           # Основные настройки Django
-├── front/              # Frontend (Vanilla JS)
-│   ├── pages/          # Страницы приложения
-│   ├── game/           # Игровая логика
-│   └── assets/         # Статические файлы
-├── nginx/              # Конфигурация веб-сервера
-├── monitoring/         # Prometheus, Grafana, Alertmanager
-├── elk/               # Elasticsearch, Logstash, Kibana
-└── postgresql/        # База данных
+│   ├── users/            # User model
+│   ├── pong/             # Pong game
+│   ├── clicker/          # Clicker game
+│   └── back/             # Core Django settings
+├── front/                # Frontend (Vanilla JS)
+│   ├── pages/            # App pages
+│   ├── game/             # Game logic
+│   └── assets/           # Static files
+├── nginx/                # Web server config
+├── monitoring/           # Prometheus, Grafana, Alertmanager
+├── elk/                  # Elasticsearch, Logstash, Kibana
+└── postgresql/           # Database
 ```
 
-### Переменные окружения
+### Environment Variables
+
 ```bash
 # Django Settings
 DJANGO_SECRET_KEY=your-secret-key-here
@@ -261,27 +287,31 @@ KIBANA_USER=kibana_system
 # INTRA_REDIRECT_URI=https://localhost:8081/oauth/callback/
 ```
 
-### Docker Compose сервисы
-- **nginx** - обратный прокси (порт 8081:443)
-- **front** - frontend (порт 5000:5000)
-- **back** - backend API (порт 5001:5001)
-- **postgres** - база данных (порт 5432:5432)
-- **prometheus** - метрики (порт 9090:9090)
-- **grafana** - дашборды (порт 3000:3000)
-- **es01** - Elasticsearch (порт 9200:9200)
-- **kib01** - Kibana (порт 5601:5601)
-- **log01** - Logstash (порт 5044:5044)
-- **alertmanager** - алерты (порт 9093:9093)
+### Docker Compose Services
 
---
+* **nginx** — reverse proxy (port 8081:443)
+* **front** — frontend (port 5000:5000)
+* **back** — backend API (port 5001:5001)
+* **postgres** — database (port 5432:5432)
+* **prometheus** — metrics (port 9090:9090)
+* **grafana** — dashboards (port 3000:3000)
+* **es01** — Elasticsearch (port 9200:9200)
+* **kib01** — Kibana (port 5601:5601)
+* **log01** — Logstash (port 5044:5044)
+* **alertmanager** — alerts (port 9093:9093)
 
-## 🚀 Развитие проекта
+---
 
-### Планируемые улучшения
-- [ ] WebSocket для real-time игр
-- [ ] Redis для кэширования
-- [ ] CI/CD pipeline
-- [ ] Unit и integration тесты
-- [ ] API документация (Swagger)
-- [ ] Мобильная версия
-- [ ] Дополнительные игры
+## 🚀 Roadmap
+
+### Planned Improvements
+
+* [ ] Redis for caching
+* [ ] GitOps for config management
+* [ ] CI/CD pipeline
+* [ ] Kubernetes for orchestration
+* [ ] Kafka for async processing
+* [ ] Unit & integration tests
+* [ ] API documentation (Swagger)
+* [ ] IaC with Terraform and Ansible
+* [ ] Trivy for vulnerability scanning
