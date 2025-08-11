@@ -2,7 +2,7 @@ import {showNames} from "./utils.js";
 
 const translations = {
     en: {
-        transendence: "ft_transendence",
+        transcendence: "ft_transcendence",
         welcome: "Welcome",
         hello: "Hello",
         pingpong: "Ping Pong",
@@ -51,7 +51,7 @@ const translations = {
         signout: 'Sign Out',
     },
     ru: {
-        transendence: "трансуха",
+        transcendence: "трансуха",
         welcome: "Добро пожаловать",
         hello: "Привет",
         pingpong: "Пинг Понг",
@@ -116,11 +116,6 @@ function changeLanguage(language) {
         const key = element.getAttribute('data-translate');
         element.textContent = translations[language][key];
     });
-
-    // Обновляем состояние кнопок авторизации после смены языка
-    if (window.auth && window.auth.updateUI) {
-        window.auth.updateUI();
-    }
 }
 document.getElementById('flexRadioDefault1').addEventListener('change', function() {
     if (this.checked) {

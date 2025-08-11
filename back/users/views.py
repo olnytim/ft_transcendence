@@ -69,10 +69,11 @@ def logout_user(request):
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 @api_view(['GET'])
-@login_required
 def get_authenticated_user(request):
     """Получение информации об авторизованном пользователе"""
-    return JsonResponse({
+    if not request.user.is_authenticated:
+        return Response({'error': 'Authentication credentials were not provided.'}, status=status.HTTP_403_FORBIDDEN)
+    return Response({
         'username': request.user.username,
         'email': request.user.email,
         'is_authenticated': True
@@ -84,4 +85,4 @@ def is_logged_in(request):
     return JsonResponse({
         'is_logged_in': request.user.is_authenticated,
         'username': request.user.username if request.user.is_authenticated else None
-    }) 
+    })
