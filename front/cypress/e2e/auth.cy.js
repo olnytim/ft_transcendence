@@ -67,9 +67,4 @@ describe('Authentication', () => {
   //   // Проверяем, что кнопка выхода появилась
   //   cy.get('[data-auth="logout"]').should('be.visible');
   //
-  //   // Выход
-  //   cy.get('[data-auth="logout"]').click();
-  //   cy.get('[data-auth="logout"]').should('not.be.visible');
-  //   cy.get('[data-auth="login"]').should('be.visible');
-  // });
 });
