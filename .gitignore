@@ -10,3 +10,5 @@ __pychache__
 certs/
 *.pyc
 .env-e
+
+todo.txt

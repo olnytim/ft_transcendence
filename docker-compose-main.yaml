@@ -1,5 +1,7 @@
 name: ft_transcendence
 
+
+
 services:
   #---------------------------------- MAIN PART ----------------------------------#
   #---------------------------------- Webserver ----------------------------------#
@@ -229,6 +231,28 @@ services:
     depends_on: {"es01": {"condition": "service_healthy"}}
 
 
+  #---------------------------------- CI/CD ----------------------------------#
+  jenkins:
+    container_name: jenkins
+    build:
+      context: ./jenkins
+      args:
+        DOCKER_GID: ${DOCKER_GID:-999}
+    ports:
+      - '8082:8080'
+      - '50000:50000'
+    networks:
+      - front-tier
+      - back-tier
+    volumes:
+      - jenkins-volume:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    # Если будешь вешать Jenkins на под-путь через nginx, можно сразу задать префикс:
+    # environment:
+    #   - JENKINS_OPTS=--prefix=/jenkins
+
+
 #---------------------------------- Project settings ----------------------------------#
 networks:
   front-tier:
@@ -242,3 +266,4 @@ networks:
 
 volumes:
     prometheus-volume:
+    jenkins-volume:

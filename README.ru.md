@@ -283,7 +283,7 @@ KIBANA_USER=kibana_system
 - [ ] CI/CD pipeline
 - [ ] Kubernetes для оркестрации
 - [ ] Kafka для асинхронной обработки
-- [ ] Unit и integration тесты
+- [x] Unit и integration тесты
 - [ ] API документация (Swagger)
 - [ ] IaC с Terraform и Ansible
 - [ ] Trivy для сканирования уязвимостей

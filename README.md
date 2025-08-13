@@ -311,7 +311,7 @@ KIBANA_USER=kibana_system
 * [ ] CI/CD pipeline
 * [ ] Kubernetes for orchestration
 * [ ] Kafka for async processing
-* [ ] Unit & integration tests
+* [x] Unit & integration tests
 * [ ] API documentation (Swagger)
 * [ ] IaC with Terraform and Ansible
 * [ ] Trivy for vulnerability scanning
