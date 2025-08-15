@@ -2,7 +2,7 @@ groups:
   - name: infra_alerts
     rules:
       - alert: HighCPUUsage
-        expr: sum(rate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance) > 0.1
+        expr: sum(rate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance) < 0.1
         for: 1m
         labels:
           severity: critical

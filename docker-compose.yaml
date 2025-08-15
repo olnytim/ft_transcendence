@@ -1,11 +1,21 @@
 name: ft_transcendence
 
-
-
 services:
+  #---------------------------------- CERTS ----------------------------------#
+  create_certs:
+    profiles:
+      - certs
+    container_name: create_certs
+    build:
+      context: ./elk/elk_setup
+      dockerfile: Dockerfile
+    environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
   #---------------------------------- MAIN PART ----------------------------------#
   #---------------------------------- Webserver ----------------------------------#
   nginx:
+    profiles:
+      - app
     container_name: nginx
     build:
       context: './nginx'
@@ -23,6 +33,8 @@ services:
 
   #---------------------------------- Frontend ----------------------------------#
   front:
+    profiles:
+      - app
     container_name: front
     build:
       context: './front'
@@ -37,6 +49,8 @@ services:
 
   #---------------------------------- Backend ----------------------------------#
   back:
+    profiles:
+      - app
     container_name: back
     build:
       context: './back'
@@ -45,13 +59,15 @@ services:
       - '5001:5001'
     networks:
       - back-tier
+    volumes:
+      - back-volume:/usr/local/lib/python3.12/site-packages
     restart: always
     depends_on: {"postgres": {"condition": "service_healthy"}}
-    env_file:
-      - .env
 
   #---------------------------------- Database ----------------------------------#
   postgres:
+    profiles:
+      - app
     container_name: postgres
     build:
       context: './postgresql'
@@ -64,6 +80,8 @@ services:
       - '5432:5432'
     networks:
       - back-tier
+    volumes:
+      - 'postgres-volume:/var/lib/postgresql/data'
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin -d test_db"]
       interval: 10s
@@ -73,14 +91,14 @@ services:
       driver: gelf
       options:
         gelf-address: 'udp://localhost:12201'
-    links:
-      - log01:log01
     restart: always
 
 
   #---------------------------------- DevOps PART ----------------------------------#
   #---------------------------------- Monitoring ----------------------------------#
   prometheus:
+    profiles:
+      - app
     container_name: prom
     build:
       context: './monitoring/prometheus'
@@ -98,6 +116,8 @@ services:
     restart: always
 
   grafana:
+    profiles:
+      - app
     container_name: grafana
     build:
       context: './monitoring/grafana'
@@ -113,10 +133,12 @@ services:
     restart: always
 
   nginx-exporter:
+    profiles:
+      - app
     container_name: nginx-exporter
     image: 'nginx/nginx-prometheus-exporter:1.4'
     command:
-      - '--nginx.scrape-uri=http://localhost:8080/nginx_status'
+      - '--nginx.scrape-uri=http://nginx:80/nginx_status'
     ports:
       - '9113:9113'
     networks:
@@ -125,6 +147,8 @@ services:
     restart: always
 
   node-exporter:
+    profiles:
+      - app
     container_name: node-exporter
     image: 'quay.io/prometheus/node-exporter:v1.8.2'
     command:
@@ -143,6 +167,8 @@ services:
     restart: always
 
   alertmanager:
+    profiles:
+      - app
     container_name: alerting
     build:
       context: './monitoring/alertmanager'
@@ -151,11 +177,15 @@ services:
       - '9093:9093'
     networks:
       - monitoring-tier
+    volumes:
+        - 'alerting-volume:/alertmanager'
     restart: always
 
 
   #---------------------------------- ELK stack ----------------------------------#
   es01:
+    profiles:
+      - app
     container_name: es01
     build:
       context: './elk/elasticsearch'
@@ -191,6 +221,8 @@ services:
     restart: always
 
   kib01:
+    profiles:
+      - app
     container_name: kib01
     build:
       context: './elk/kibana'
@@ -213,6 +245,8 @@ services:
     depends_on: {"es01": {"condition": "service_healthy"}}
 
   log01:
+    profiles:
+      - app
     container_name: log01
     build:
       context: './elk/logstash'
@@ -233,11 +267,21 @@ services:
 
   #---------------------------------- CI/CD ----------------------------------#
   jenkins:
+    profiles:
+      - ci
     container_name: jenkins
     build:
       context: ./jenkins
       args:
-        DOCKER_GID: ${DOCKER_GID:-999}
+        DOCKER_GID: ${DOCKER_GID:-0}
+    environment:
+      JENKINS_ADMIN_USER: ${JENKINS_ADMIN_USER:-admin}
+      JENKINS_ADMIN_PASS: ${JENKINS_ADMIN_PASS:-admin123}
+      CASC_JENKINS_CONFIG: /var/jenkins_home/casc.yaml
+      GITHUB_USER: ${GITHUB_USER:-}
+      GITHUB_PAT: ${GITHUB_PAT:-}
+      GITHUB_CLONE_URL: ${GITHUB_CLONE_URL:-https://github.com/olnytim/ft_transcendence.git}
+      GH_CRED_ID: ${GH_CRED_ID:-github-https}
     ports:
       - '8082:8080'
       - '50000:50000'
@@ -248,9 +292,6 @@ services:
       - jenkins-volume:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
-    # Если будешь вешать Jenkins на под-путь через nginx, можно сразу задать префикс:
-    # environment:
-    #   - JENKINS_OPTS=--prefix=/jenkins
 
 
 #---------------------------------- Project settings ----------------------------------#
@@ -267,3 +308,6 @@ networks:
 volumes:
     prometheus-volume:
     jenkins-volume:
+    postgres-volume:
+    back-volume:
+    alerting-volume:

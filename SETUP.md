@@ -88,11 +88,11 @@ make fclean   # Полная очистка
 ### Просмотр логов:
 ```bash
 # Логи всех сервисов
-docker-compose -f docker-compose-main.yaml logs
+docker-compose logs
 
 # Логи конкретного сервиса
-docker-compose -f docker-compose-main.yaml logs back
-docker-compose -f docker-compose-main.yaml logs front
+docker-compose back
+docker-compose logs front
 ```
 
 ## 🔍 Отладка

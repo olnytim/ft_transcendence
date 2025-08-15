@@ -1,34 +1,47 @@
+// pipeline {
+//   agent any
+//   options { timestamps(); ansiColor('xterm') }
+//   environment {
+//     COMPOSE_FILE = 'docker-compose-main.yaml'
+//   }
+//   stages {
+//     stage('Checkout') {
+//       steps { checkout scm }
+//     }
+//     stage('Prepare & Build (make ci)') {
+//       steps {
+//         sh '''
+//           set -e
+//           make ci         # gen + app up --profile app
+//         '''
+//       }
+//     }
+//     // тут можно воткнуть тесты/линтеры/сканы
+//     // stage('Tests') { steps { sh 'pytest -q || true' } }
+//
+//   }
+//   post {
+//     always {
+//       sh 'make ci-clean || true'   // аккуратно снести app-стенд
+//       junit allowEmptyResults: true, testResults: 'reports/junit/**/*.xml'
+//       archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/**/*, artifacts/**/*'
+//     }
+//   }
+// }
+
 pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Build and Test Backend') {
-            steps {
-                script {
-                    echo "Building backend..."
-                    sh 'docker compose -f docker-compose-main.yaml build back'
-                    echo "Running backend tests..."
-                    sh 'docker compose -f docker-compose-main.yaml run --rm back sh -c "coverage run manage.py test && coverage report"'
-                }
-            }
-        }
-
-        stage('Build and Test Frontend') {
-            steps {
-                script {
-                    echo "Building frontend..."
-                    sh 'docker compose -f docker-compose-main.yaml build front'
-                    echo "Running frontend tests..."
-                    sh 'docker compose -f docker-compose-main.yaml run --rm front npm test'
-                }
-            }
-        }
+  agent any
+  stages {
+    stage('Docker access') {
+      steps {
+        sh '''
+          whoami
+          id
+          ls -l /var/run/docker.sock
+          docker version
+          docker ps
+        '''
+      }
     }
+  }
 }
-

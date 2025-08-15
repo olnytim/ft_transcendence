@@ -1,0 +1,17 @@
+workflow-aggregator
+git
+github
+github-branch-source
+branch-api
+credentials
+credentials-binding
+plain-credentials
+ssh-credentials
+configuration-as-code
+job-dsl
+docker-workflow
+docker-commons
+timestamper
+ansicolor
+junit
+htmlpublisher
